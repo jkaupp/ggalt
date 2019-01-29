@@ -4,7 +4,7 @@
 #' @export
 GeomXSpline2 <- ggproto("GeomXSpline", Geom,
   required_aes = c("x", "y"),
-  default_aes = aes(colour = "black", s_shape=1, s_open=FALSE),
+  default_aes = aes(colour = "black", s_shape = 1, s_open = FALSE, size = 1),
   draw_key = draw_key_point,
 
   draw_panel = function(data, panel_scales, coord) {
@@ -13,7 +13,8 @@ GeomXSpline2 <- ggproto("GeomXSpline", Geom,
       coords$x, coords$y,
       shape = coords$s_shape-1,  ## kluge!
       open = coords$s_open[1],
-      gp = grid::gpar(col = coords$colour)
+      gp = grid::gpar(col = coords$colour,
+                      lwd = coords$size)
     )
   }
 )
